@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Attendance Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Dashboard</h1>
+
+      <!-- Admin photo placeholder -->
+      <div class="avatar">
+        <!-- Admin image will be inserted here -->
+      </div>
+    </header>
+
+    <!-- ATTENDANCE TITLE -->
+    <section class="section">
+      <small>Attendance</small>
+      <h2>This week</h2>
+    </section>
+
+    <!-- DAYS NAVIGATION -->
+    <div class="days">
+      <!-- Scroll left (hidden by default) -->
+      <button class="nav-arrow left hidden" aria-label="Scroll left">
+        ‹
+      </button>
+
+      <!-- Days list -->
+      <div class="day-list">
+        <span class="day active" data-day="mon">Mon</span>
+        <span class="day" data-day="tue">Tue</span>
+        <span class="day" data-day="wed">Wed</span>
+        <span class="day" data-day="thu">Thu</span>
+        <span class="day" data-day="fri">Fri</span>
+      </div>
+
+      <!-- Scroll right -->
+      <button class="nav-arrow right" aria-label="Scroll right">
+        ›
+      </button>
+    </div>
+
+    <!-- STAT CARDS -->
+    <section class="cards">
+
+      <!-- Total Staff -->
+      <div class="card big">
+        <h3>Total staff</h3>
+        <div class="value" id="total-staff">--</div>
+      </div>
+
+      <!-- Absent -->
+      <div class="card red">
+        <h3>Absent</h3>
+        <div class="value" id="absent">--</div>
+      </div>
+
+      <!-- Early -->
+      <div class="card gray">
+        <h3>Early</h3>
+        <div class="value" id="early">--</div>
+      </div>
+
+      <!-- Total Present -->
+      <div class="card green">
+        <h3>Total present</h3>
+        <div class="value" id="present">--</div>
+      </div>
+
+      <!-- Late -->
+      <div class="card gray">
+        <h3>Late</h3>
+        <div class="value" id="late">--</div>
+      </div>
+
+    </section>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active" title="Home">
+        🏠
+      </a>
+
+      <a href="#" class="nav-item" title="Attendance">
+        📋
+      </a>
+
+      <a href="#" class="nav-item" title="Add">
+        ➕
+      </a>
+
+      <a href="#" class="nav-item" title="Reports">
+        ✔
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- JS will be added later -->
+  <!-- <script src="script.js"></script> -->
+
+</body>
+</html>
