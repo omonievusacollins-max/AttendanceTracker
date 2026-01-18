@@ -181,8 +181,3 @@ body {
   color: var(--text-muted);
   font-size: 18px;
 }
-
-.nav-item.active {
-  background: var(--blue);
-  color: #fff;
-}
