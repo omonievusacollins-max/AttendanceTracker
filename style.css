@@ -160,16 +160,17 @@ body {
 
 /* BOTTOM NAV */
 .bottom-nav {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
+  position: fixed;
+  bottom: 5px;
+  left: 1vw;
+  right: 1vw;
+  width: 98vw;
   background: #fff;
-  border-radius: 20px;
+  border-radius: 0;
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .nav-item {
