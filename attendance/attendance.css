@@ -175,131 +175,98 @@ body {
 }
 
 /* STAFF LIST */
-.staff-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 80px;
-}
-
+/* ===== NEW STAFF CARD STYLES ===== */
 .staff-item {
-  background-color: white;
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.staff-header {
-  width: 100%;
-  padding: 12px 16px;
-  border: none;
-  background-color: white;
-  cursor: pointer;
+.staff-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.staff-card-header {
   display: flex;
   align-items: center;
+  padding: 16px;
   gap: 12px;
-  transition: background-color 0.2s ease;
-  text-align: left;
-  font-size: 14px;
-  font-weight: 500;
 }
 
-.staff-header:hover {
-  background-color: #f8f8f8;
-}
-
-.expand-icon {
-  display: inline-block;
+.staff-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--blue-light), #ede9fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--blue);
   font-size: 18px;
-  color: var(--text-muted);
-  transition: transform 0.3s ease;
   flex-shrink: 0;
 }
 
-.staff-header[aria-expanded="true"] .expand-icon {
-  transform: rotate(90deg);
+.staff-info {
+  flex: 1;
 }
 
-.staff-name {
-  flex: 1;
-  font-size: 14px;
+.staff-info .staff-name {
+  font-size: 16px;
+  font-weight: 600;
   color: var(--text-dark);
-  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.staff-info .staff-id,
+.staff-info .staff-department {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.staff-status-badges {
+  display: flex;
+  gap: 6px;
 }
 
 .status-badge {
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
   font-size: 12px;
   font-weight: 600;
-  color: white;
-  flex-shrink: 0;
-  background-color: var(--blue);
+  text-transform: uppercase;
+  color: #fff;
 }
 
-.status-badge.present {
-  background: #B2FFBD;
-  color: #33873F;
-}
+.status-badge.present { background: #33873F; }
+.status-badge.absent { background: #FF4D4F; }
+.status-badge.late { background: #FFAA00; }
+.status-badge.early { background: #1E88FF; }
 
-.status-badge.absent {
-  background-color: #FFCFCF;
-  color: #FF0000;
-}
-
-.status-badge.late {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #e0e0e0;
-}
-
-.status-badge.late.active {
-  background-color: var(--blue);
-  color: #ffffff;
-  border: none;
-}
-
-.status-badge.early {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #e0e0e0;
-}
-
-.status-badge.early.active {
-  background-color: var(--blue);
-  color: #ffffff;
-  border: none;
-}
-
-/* STAFF DETAILS */
+/* Staff Details */
 .staff-details {
-  display: none;
-  padding: 0 16px 12px 40px;
-  background-color: #f8f8f8;
+  display: none; /* keep hidden until expanded */
+  padding: 12px 16px;
+  background: #f8f8f8;
   border-top: 1px solid #eee;
-}
-
-.staff-details.open {
-  display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.detail-item {
+.detail-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   font-size: 13px;
+  color: var(--text-dark);
 }
 
-.detail-label {
-  color: var(--blue);
-  font-weight: 500;
+.staff-item.expanded .staff-details {
+  display: flex; /* show details when expanded */
 }
 
-.detail-value {
-  color: var(--text-muted);
-}
 
 /* BOTTOM NAVIGATION */
 .bottom-nav {
