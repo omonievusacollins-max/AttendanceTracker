@@ -174,6 +174,13 @@ body {
   height: 31px;
 }
 
+#calendarInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
 /* STAFF LIST */
 /* ===== NEW STAFF CARD STYLES ===== */
 .staff-item {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Attendance</title>
   <link rel="stylesheet" href="attendance.css" />
+  <script src="./attendance.js" defer></script>
 </head>
 <body>
 
@@ -32,13 +33,18 @@
     <div class="date-section">
       <div class="date-display">5th Oct 2025</div>
       <div class="actions">
-        <button class="search-btn" aria-label="Search">
-          <img src="../assets/search.svg" alt="Search">
-        </button>
-        <button class="calendar-btn" aria-label="Calendar">
-          <img src="../assets/calendar.svg" alt="Calendar">
-        </button>
-      </div>
+      <button class="search-btn" aria-label="Search">
+        <img src="../assets/search.svg" alt="Search">
+      </button>
+
+      <button class="calendar-btn" aria-label="Calendar">
+        <img src="../assets/calendar.svg" alt="Calendar">
+      </button>
+
+      <!-- Hidden native date input -->
+      <input type="date" id="calendarInput">
+    </div>
+
     </div>
 
     <!-- STAFF LIST -->
