@@ -12,7 +12,7 @@
 
     <!-- HEADER -->
     <header class="header">
-      <h1>Staff List</h1>
+      <h1>Staff Directory</h1>
 
       <!-- Admin photo placeholder -->
       <div class="avatar">
@@ -20,29 +20,53 @@
       </div>
     </header>
 
-    <!-- CONTENT AREA -->
-    <main class="content">
-      <!-- Staff list content will go here -->
-    </main>
+    <!-- SEARCH AND FILTER SECTION -->
+    <section class="search-section">
+      <div class="search-container">
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Search by name, ID, or department..."
+          id="searchInput"
+        >
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </div>
+      
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Staff</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="inactive">Inactive</button>
+      </div>
+    </section>
 
-    <!-- BOTTOM NAVIGATION -->
-    <nav class="bottom-nav">
-      <a href="../index.html" class="nav-item" title="Home">
-        <img src="../assets/home.svg" alt="">
+    <!-- STATS CARDS -->
+    <section class="stats-section">
+      <div class="stat-card">
+        <div class="stat-value" id="totalStaff">0</div>
+        <div class="stat-label">Total Staff</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="activeStaff">0</div>
+        <div class="stat-label">Active</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="newStaff">0</div>
+        <div class="stat-label">This Month</div>
+      </div>
+    </section>
+
+    <!-- STAFF LIST -->
+    <section class="staff-section">
+      <div class="staff-grid" id="staffGrid">
+        <!-- Staff cards will be populated here -->
+      </div>
+    </section>
       </a>
 
-      <a href="../attendance/attendance.html" class="nav-item" title="Attendance">
-        <img src="../assets/list.svg" alt="">
-      </a>
-
-      <a href="../addStaff/addStaff.html" class="nav-item" title="Add">
-        <img src="../assets/add_circle.svg" alt="">
-      </a>
-
-      <a href="./staffList.html" class="nav-item active" title="Reports">
-        <img src="../assets/checklistPage.svg" alt="">
-      </a>
-    </nav>
+      
 
   </div>
 
