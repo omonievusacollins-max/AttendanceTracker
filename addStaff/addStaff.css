@@ -17,6 +17,7 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 .app {
@@ -25,6 +26,7 @@ body {
   position: relative;
   margin: 120px auto;
   width: 98vw;
+  height: 100vh;
 }
 
 /* HEADER */
