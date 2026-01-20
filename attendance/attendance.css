@@ -59,7 +59,7 @@ body {
 
 .status-btn {
   padding: 10px 16px;
-  border-radius: 14px;
+  border-radius: 20px;
   font-size: 14px;
   border: none;
   background-color: #f2f2f2;
@@ -69,18 +69,50 @@ body {
   font-weight: 500;
 }
 
-.status-btn:first-child,
+.status-btn:first-child.active,
 .status-btn.active {
   background-color: var(--blue);
   color: #fff;
 }
 
+.status-btn[data-status="present"] {
+  color: #33873F;
+  background-color: transparent;
+}
+
+.status-btn[data-status="present"].active {
+  background-color: #B2FFBD;
+  color: #33873F;
+}
+
 .status-btn[data-status="absent"] {
-  color: #d84a4a;
+  color: #FF0000;
+  background-color: transparent;
+}
+
+.status-btn[data-status="absent"].active {
+  background-color: #FFCFCF;
+  color: #FF0000;
 }
 
 .status-btn[data-status="late"] {
-  color: var(--text-dark);
+  color: #000000;
+  background-color: transparent;
+}
+
+.status-btn[data-status="late"].active {
+  background-color: var(--blue);
+  color: #ffffff;
+}
+
+.status-btn[data-status="early"] {
+  color: #000000;
+  background-color: transparent;
+}
+
+.status-btn[data-status="early"].active {
+  background-color: var(--blue);
+  color: #ffffff;
 }
 
 .nav-arrow {
@@ -206,13 +238,37 @@ body {
 }
 
 .status-badge.present {
-  background: var(--green-light);
-  color: #1e7e34;
+  background: #B2FFBD;
+  color: #33873F;
 }
 
 .status-badge.absent {
-  background-color: var(--red-light);
-  color: #d84a4a;
+  background-color: #FFCFCF;
+  color: #FF0000;
+}
+
+.status-badge.late {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #e0e0e0;
+}
+
+.status-badge.late.active {
+  background-color: var(--blue);
+  color: #ffffff;
+  border: none;
+}
+
+.status-badge.early {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #e0e0e0;
+}
+
+.status-badge.early.active {
+  background-color: var(--blue);
+  color: #ffffff;
+  border: none;
 }
 
 /* STAFF DETAILS */
