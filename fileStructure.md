@@ -31,9 +31,11 @@
     │   ├── staffList.css
     │   └── staffList.js
     │
-    ├── index.html
-    ├── style.css
-    ├── script.js
+    ├── AdminDashboard/
+    │   ├── index.html
+    │   ├── style.css
+    │   └── script.js
+    │
     ├──fileStructure.md
     └──Readme.md
 
