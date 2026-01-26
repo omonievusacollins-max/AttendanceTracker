@@ -41,7 +41,7 @@
 
 ## Notes
 
--   **index.html, style.css, script.js**
+-   **AdminDashboard**
     -   Landing / entry point of the web app.
 -   **addStaff/**
     -   Handles adding new staff members.
