@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Login</title>
   <link rel="stylesheet" href="login.css" />
+  <script src="login.js"></script>
 </head>
 <body>
 
@@ -35,10 +36,11 @@
           />
         </div>
 
-        <button type="submit" class="login-btn">
+        <button type="button" class="login-btn" id="loginBtn">
           Login
         </button>
       </form>
+      <div id="loginError" class="error-message"></div>
 
       <div class="footer-text">
         Authorized personnel only
