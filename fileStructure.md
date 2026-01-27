@@ -41,6 +41,11 @@
     │   ├── style.css
     │   └── script.js
     │
+    ├── checkin/
+    │   ├── checkin.html
+    │   ├── checkin.css
+    │   └── checkin.js
+    │
     ├──fileStructure.md
     └──Readme.md
 
@@ -56,6 +61,10 @@
     -   Displays and manages staff records.
 -   **assets/**
     -   Shared SVG icons used across the app.
+-   **authentication/**
+    -   Authenticate admin for security
+-   **checkin/**
+    -   Staff fill in details to mark attendance
 
 This structure supports modular development and clean separation of
 concerns (HTML, CSS, JS per feature).
