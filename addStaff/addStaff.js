@@ -12,3 +12,37 @@ form.addEventListener('submit', (e) => {
 });
 
 
+function generateStaffId() {
+  return "STF-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
+
+const staffForm = document.getElementById("addStaffForm");
+
+staffForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("staffName").value.trim();
+  const role = document.getElementById("staffRole").value;
+  // const department = document.getElementById("staffDepartment").value.trim();
+
+  if (!name || !role) {
+    return alert("Name and role are required");
+  }
+
+  const staff = {
+    staffId: generateStaffId(),
+    name,
+    role,
+    // department,
+    dateJoined: new Date().toISOString().split("T")[0],
+    status: "active"
+  };
+
+  const staffList = JSON.parse(localStorage.getItem("staffList")) || [];
+  staffList.push(staff);
+  localStorage.setItem("staffList", JSON.stringify(staffList));
+
+  alert("Staff employed successfully!");
+  staffForm.reset();
+});
