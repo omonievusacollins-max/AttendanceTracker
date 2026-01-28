@@ -57,10 +57,19 @@ function logoutMenu() {
   });
 }
 
-// Usage
-// document.addEventListener('DOMContentLoaded', () => {
+const startAttendanceBtn = document.getElementById("startAttendance");
 
-// });
+startAttendanceBtn.addEventListener("click", () => {
+  // Temporary session ID (we'll replace with Firebase later)
+  const sessionId = Date.now().toString();
+
+  // Save session locally for now
+  localStorage.setItem("activeAttendanceSession", sessionId);
+
+  alert("Attendance session started");
+  console.log("Session ID:", sessionId);
+});
+
 
 
 
