@@ -16,18 +16,19 @@
       <section class="form-section">
         <h2 class="form-title">Employ staff</h2>
         
-        <form class="staff-form">
+        <form class="staff-form" id="addStaffForm">
           <div class="form-group">
             <input 
               type="text" 
               class="form-input" 
-              placeholder="User name" 
+              placeholder="User name"
+              id="staffName"
               required
             >
           </div>
 
           <div class="form-group">
-            <select class="form-input staff-role" required>
+            <select class="form-input staff-role" id="staffRole" required>
               <option value="" disabled selected>Select Role</option>
               <option value="admin">Office Manager</option>
               <option value="manager">Administrative Assistant</option>
@@ -53,7 +54,7 @@
           </div>
 
 
-          <button type="button" class="btn-primary" id="generateBtn">
+          <button type="submit" class="btn-primary" id="generateBtn">
             Generate staff id
           </button>
         </form>
@@ -81,7 +82,7 @@
 
   </div>
 
-  <script src="addStaff.js"></script>
+  <!-- <script src="addStaff.js"></script> -->
 
 </body>
 </html>
