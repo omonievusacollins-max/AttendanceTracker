@@ -1,5 +1,5 @@
 .start-attendance-btn {
-  background: var(--blue); /* or #2563eb if you don’t use CSS variables */
+  background: #2563eb; /* or #2563eb if you don’t use CSS variables */
   color: #fff;
   border: none;
   padding: 14px 22px;
