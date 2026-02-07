@@ -56,7 +56,3 @@ function logoutMenu() {
     }
   });
 }
-
-
-
-
