@@ -1,5 +1,5 @@
 // auth/login.js
-import { auth } from "../firebase/firebase.js";
+import { auth } from "/firebase/firebase.js";
 import {
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -15,7 +15,7 @@ loginForm.addEventListener("submit", async (e) => {
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    window.location.href = "../AdminDashboard/index.html";
+    window.location.href = "/AdminDashboard/index.html";
   } catch (error) {
     errorText.textContent = "Invalid email or password";
   }

@@ -1,48 +1,51 @@
-// Add Staff page scripts
-// In addStaff.js
-const form = document.querySelector('.staff-form');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const userName = form.querySelector('input[type="text"]').value;
-  const staffID = form.querySelector('.staff-id-input').value;
-  const role = form.querySelector('.staff-role').value;
+import { db } from "/firebase/firebase.js";
 
-  console.log({ userName, staffID, role });
-  // You can now send this data to Firebase
-});
+import {
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 
 function generateStaffId() {
   return "STF-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 }
 
-
 const staffForm = document.getElementById("addStaffForm");
 
-staffForm.addEventListener("submit", (e) => {
+staffForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const name = document.getElementById("staffName").value.trim();
   const role = document.getElementById("staffRole").value;
-  // const department = document.getElementById("staffDepartment").value.trim();
 
   if (!name || !role) {
-    return alert("Name and role are required");
+    alert("Name and role are required");
+    return;
   }
 
-  const staff = {
-    staffId: generateStaffId(),
+  const staffId = generateStaffId();
+
+  const staffData = {
+    staffId,
     name,
     role,
-    // department,
     dateJoined: new Date().toISOString().split("T")[0],
-    status: "active"
+    status: "active",
+    createdAt: serverTimestamp()
   };
 
-  const staffList = JSON.parse(localStorage.getItem("staffList")) || [];
-  staffList.push(staff);
-  localStorage.setItem("staffList", JSON.stringify(staffList));
-
-  alert("Staff employed successfully!");
-  staffForm.reset();
+  try {
+    await setDoc(doc(db, "staffs", staffId), staffData);
+    alert("Staff employed successfully!");
+    staffForm.reset();
+  } catch (err) {
+    console.error(err);
+    alert("Error employing staff");
+  }
 });
