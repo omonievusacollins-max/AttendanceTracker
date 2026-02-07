@@ -4,6 +4,10 @@ import {
   doc,
   getDoc,
   setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -46,8 +50,8 @@ async function initCheckin() {
     return;
   }
 
-  // 3️⃣ Get staff list
-  const staffs = JSON.parse(localStorage.getItem("staffList")) || [];
+  // 3️⃣ Get staff list from Firestore
+  const staffCollection = collection(db, "staff");
 
   const checkinForm = document.getElementById("checkinForm");
   const nameInput = document.getElementById("name");
@@ -66,10 +70,22 @@ async function initCheckin() {
       return alert("Please enter your name and select a role.");
     }
 
-    // Find staff
-    const staff = staffs.find(
-      s => s.name.trim().toLowerCase() === enteredName && s.role === selectedRole
-    );
+    // Query Firestore for matching staff
+    let staff = null;
+    try {
+      const staffDocs = await getDocs(staffCollection);
+      const matchingStaff = staffDocs.docs.find(doc => {
+        const data = doc.data();
+        return data.name.trim().toLowerCase() === enteredName && data.role === selectedRole;
+      });
+      if (matchingStaff) {
+        staff = matchingStaff.data();
+        staff.id = matchingStaff.id; // store document ID
+      }
+    } catch (err) {
+      console.error("Error fetching staff from Firestore:", err);
+      return alert("Error validating staff. Please try again.");
+    }
 
     if (!staff) return alert("Staff not found. Check your name and role.");
 
