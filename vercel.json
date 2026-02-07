@@ -12,6 +12,5 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "buildCommand": "",
-  "outputDirectory": ".",
-  "publicPath": "/"
+  "outputDirectory": "."
 }
