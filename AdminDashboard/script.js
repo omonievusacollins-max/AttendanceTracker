@@ -46,7 +46,7 @@ function logoutMenu() {
   // Logout action (placeholder)
   logoutBtn.addEventListener('click', () => {
     // clear session later (Firebase / localStorage)
-    window.location.href = '../authentication/login.html';
+    window.location.href = '/authentication/login.html';
   });
 
   // Close menu when clicking outside
