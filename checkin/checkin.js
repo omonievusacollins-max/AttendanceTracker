@@ -49,6 +49,7 @@ async function initCheckin() {
     alert("This attendance QR code has already been used.");
     return;
   }
+  console.log(sessionData.status)
 
   // 3️⃣ Get staff list from Firestore
   const staffCollection = collection(db, "staffs");
@@ -137,6 +138,7 @@ async function initCheckin() {
     checkinForm.reset();
     employeeIdInput.value = "";
     timeInInput.value = "";
+    window.close(); // Close the check-in window after successful check-in
   });
 }
 
