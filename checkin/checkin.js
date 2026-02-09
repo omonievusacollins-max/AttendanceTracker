@@ -51,7 +51,7 @@ async function initCheckin() {
   }
 
   // 3️⃣ Get staff list from Firestore
-  const staffCollection = collection(db, "staff");
+  const staffCollection = collection(db, "staffs");
 
   const checkinForm = document.getElementById("checkinForm");
   const nameInput = document.getElementById("name");
