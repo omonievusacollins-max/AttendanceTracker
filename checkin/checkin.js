@@ -19,7 +19,7 @@ async function initCheckin() {
   if (!sessionId) {
     alert("Invalid attendance session.");
     window.close(); // Close the check-in window if no session ID
-    window.location.href = "/"; // redirect to home
+    // window.location.href = "/"; // redirect to home
     return;
   }
 
@@ -49,6 +49,7 @@ async function initCheckin() {
 
   if (sessionData.status === "used") {
     alert("This attendance QR code has already been used.");
+    window.close(); // Close the check-in window if session is already used
     return;
   }
   console.log(sessionData.status)
