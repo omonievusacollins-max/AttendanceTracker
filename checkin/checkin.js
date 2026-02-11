@@ -62,6 +62,7 @@ async function initCheckin() {
   const roleSelect = document.getElementById("role");
   const employeeIdInput = document.getElementById("employeeId");
   const timeInInput = document.getElementById("timeIn");
+  const statusInput = document.getElementById("status");
 
   // 4️⃣ Handle form submit
   checkinForm.addEventListener("submit", async (e) => {
@@ -99,6 +100,13 @@ async function initCheckin() {
     const formattedTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     timeInInput.value = formattedTime;
 
+    // Determine attendance status (Late or Early based on 08:15)
+    const [hours, minutes] = formattedTime.split(":").map(Number);
+    const checkInMinutes = hours * 60 + minutes;
+    const cutoffMinutes = 8 * 60 + 15; // 08:15
+    const attendanceStatus = checkInMinutes > cutoffMinutes ? "Late" : "Early";
+    statusInput.value = attendanceStatus;
+
     // 5️⃣ Prevent duplicate check-in per day
     const attendanceRecords = JSON.parse(localStorage.getItem("attendanceRecords")) || [];
     const today = now.toLocaleDateString();
@@ -114,6 +122,7 @@ async function initCheckin() {
       name: staff.name,
       role: staff.role,
       timeIn: formattedTime,
+      status: attendanceStatus,
       date: today,
       sessionId
     };
@@ -141,6 +150,7 @@ async function initCheckin() {
     checkinForm.reset();
     employeeIdInput.value = "";
     timeInInput.value = "";
+    statusInput.value = "";
     window.close(); // Close the check-in window after successful check-in 
   });
 }
