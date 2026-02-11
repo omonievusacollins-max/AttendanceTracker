@@ -41,7 +41,8 @@ async function initCheckin() {
 
   if (!sessionData) {
     alert("This attendance session does not exist.");
-    window.location.href = "/";
+    window.close(); // Close the check-in window if session is invalid
+    // window.location.href = "/";
     return;
   }
 
@@ -138,7 +139,7 @@ async function initCheckin() {
     checkinForm.reset();
     employeeIdInput.value = "";
     timeInInput.value = "";
-    window.close(); // Close the check-in window after successful check-in
+    window.close(); // Close the check-in window after successful check-in 
   });
 }
 
