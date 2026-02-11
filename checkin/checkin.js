@@ -18,6 +18,7 @@ async function initCheckin() {
 
   if (!sessionId) {
     alert("Invalid attendance session.");
+    window.close(); // Close the check-in window if no session ID
     window.location.href = "/"; // redirect to home
     return;
   }
