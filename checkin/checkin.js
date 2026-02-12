@@ -6,6 +6,7 @@ import {
   setDoc,
   collection,
   getDocs,
+  addDoc,
   query,
   where,
   serverTimestamp
@@ -105,16 +106,29 @@ async function initCheckin() {
     const attendanceStatus = checkInMinutes > cutoffMinutes ? "Late" : "Early";
     statusInput.value = attendanceStatus;
 
-    // 5️⃣ Prevent duplicate check-in per day
-    const attendanceRecords = JSON.parse(localStorage.getItem("attendanceRecords")) || [];
+    // 5️⃣ Prevent duplicate check-in per day (check Firestore)
     const today = now.toLocaleDateString();
-    const alreadyCheckedIn = attendanceRecords.find(
-      r => r.staffId === staff.staffId && r.date === today
-    );
+    const attendanceCollection = collection(db, "attendanceRecords");
+    let alreadyCheckedIn = null;
+    try {
+      const q = query(
+        attendanceCollection,
+        where("staffId", "==", staff.staffId),
+        where("date", "==", today)
+      );
+      const snapshot = await getDocs(q);
+      alreadyCheckedIn = snapshot.docs.length > 0;
+    } catch (err) {
+      console.warn("Failed to query Firestore for duplicates, falling back to localStorage:", err);
+      const localRecords = JSON.parse(localStorage.getItem("attendanceRecords")) || [];
+      alreadyCheckedIn = localRecords.find(
+        r => r.staffId === staff.staffId && r.date === today
+      );
+    }
 
-    if (alreadyCheckedIn) return alert("You have already checked in today.");
+    if (alreadyCheckedIn) return alert("You have already checked in today.");''
 
-    // 6️⃣ Save attendance locally
+    // 6️⃣ Save attendance to Firestore
     const attendance = {
       staffId: staff.staffId,
       name: staff.name,
@@ -122,8 +136,19 @@ async function initCheckin() {
       timeIn: formattedTime,
       status: attendanceStatus,
       date: today,
-      sessionId
+      sessionId,
+      createdAt: serverTimestamp()
     };
+
+    try {
+      await addDoc(attendanceCollection, attendance);
+    } catch (err) {
+      console.error("Failed to save attendance to Firestore:", err);
+      return alert("Error saving attendance. Please try again.");
+    }
+
+    // Also save to localStorage for offline access
+    const attendanceRecords = JSON.parse(localStorage.getItem("attendanceRecords")) || [];
     attendanceRecords.push(attendance);
     localStorage.setItem("attendanceRecords", JSON.stringify(attendanceRecords));
 
