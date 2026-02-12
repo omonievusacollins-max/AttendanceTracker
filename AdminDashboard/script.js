@@ -19,9 +19,10 @@ onAuthStateChanged(auth, (user) => {
 
 
 document.addEventListener('DOMContentLoaded', () =>{
+    loadWeekDates();
     handleDayClick();
     logoutMenu();
-    loadDashboardStats();
+    loadDashboardStats(getTodayDate());
 });
 
 function handleDayClick() {
@@ -34,8 +35,45 @@ function handleDayClick() {
 
       // add active to clicked day
       day.classList.add('active');
+
+      // Load stats for the selected day
+      const selectedDay = day.getAttribute('data-day');
+      const selectedDate = weekDates[selectedDay];
+      loadDashboardStats(selectedDate);
     });
   });
+}
+
+// Store week dates globally
+let weekDates = {};
+
+// ==============================
+// Calculate dates for current week
+// ==============================
+function loadWeekDates() {
+  const today = new Date();
+  const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  
+  // Calculate Monday of this week
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - (currentDay === 0 ? 6 : currentDay - 1));
+
+  // Map each day of the week to its date
+  const daysOfWeek = ['mon', 'tue', 'wed', 'thu', 'fri'];
+  daysOfWeek.forEach((day, index) => {
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + index);
+    weekDates[day] = date.toLocaleDateString();
+  });
+
+  console.log('Week dates:', weekDates);
+}
+
+// ==============================
+// Get today's date formatted
+// ==============================
+function getTodayDate() {
+  return new Date().toLocaleDateString();
 }
 
 function logoutMenu() {
@@ -67,21 +105,18 @@ function logoutMenu() {
 // ==============================
 // Load Dashboard Statistics
 // ==============================
-async function loadDashboardStats() {
+async function loadDashboardStats(selectedDate) {
   try {
-    // Get today's date in the same format used in attendance records
-    const today = new Date().toLocaleDateString();
-
     // 1️⃣ Fetch total staffs
     const staffCollection = collection(db, "staffs");
     const staffSnapshot = await getDocs(staffCollection);
     const totalStaffs = staffSnapshot.docs.length;
 
-    // 2️⃣ Fetch today's attendance records
+    // 2️⃣ Fetch attendance records for the selected date
     const attendanceCollection = collection(db, "attendanceRecords");
     const attendanceQuery = query(
       attendanceCollection,
-      where("date", "==", today)
+      where("date", "==", selectedDate)
     );
     const attendanceSnapshot = await getDocs(attendanceQuery);
     const attendanceRecords = attendanceSnapshot.docs.map(doc => doc.data());
@@ -99,7 +134,7 @@ async function loadDashboardStats() {
     document.getElementById("present").textContent = presentCount;
     document.getElementById("late").textContent = lateCount;
 
-    console.log(`Today's Stats (${today}):`, {
+    console.log(`Stats for ${selectedDate}:`, {
       totalStaffs,
       presentCount,
       absentCount,
