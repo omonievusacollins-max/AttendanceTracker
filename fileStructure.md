@@ -46,8 +46,9 @@
     │   ├── checkin.css
     │   └── checkin.js
     │
-    ├──fileStructure.md
-    └──Readme.md
+    ├── fileStructure.md
+    ├── 404.html
+    └── Readme.md
 
 ## Notes
 
