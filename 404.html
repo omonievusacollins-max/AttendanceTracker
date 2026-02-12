@@ -73,43 +73,7 @@
             margin-bottom: 8px;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
 
-        .btn {
-            padding: 12px 30px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: #e0e0e0;
-            color: #333;
-        }
-
-        .btn-secondary:hover {
-            background: #d0d0d0;
-            transform: translateY(-2px);
-        }
     </style>
 </head>
 <body>
@@ -128,11 +92,6 @@
                 <li>The session has expired</li>
                 <li>The QR code was scanned incorrectly</li>
             </ul>
-        </div>
-
-        <div class="action-buttons">
-            <a href="/" class="btn btn-primary">Go to Home</a>
-            <button class="btn btn-secondary" onclick="window.history.back()">Go Back</button>
         </div>
     </div>
 </body>
