@@ -126,8 +126,11 @@ async function initCheckin() {
       );
     }
 
-    if (alreadyCheckedIn) return alert("You have already checked in today.");''
-
+    if (alreadyCheckedIn){
+      alert("You have already checked in today.");
+      window.location.href = "/404.html";
+      return 
+    }
     // 6️⃣ Save attendance to Firestore
     const attendance = {
       staffId: staff.staffId,
