@@ -48,6 +48,7 @@
     │
     ├── fileStructure.md
     ├── 404.html
+    ├── vercel.json
     └── Readme.md
 
 ## Notes
