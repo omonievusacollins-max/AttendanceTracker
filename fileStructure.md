@@ -48,6 +48,7 @@
     │
     ├── fileStructure.md
     ├── 404.html
+    ├── index.html (to redirect to admin dashboard)
     ├── vercel.json
     └── Readme.md
 
