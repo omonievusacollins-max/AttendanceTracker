@@ -10,6 +10,18 @@ const staffData = [
   { id: 'S007', name: 'Emma Williams', department: 'Finance', joinDate: '2023-05-18', status: 'active' },
   { id: 'S008', name: 'David Brown', department: 'Operations', joinDate: '2022-04-12', status: 'inactive' },
 ];
+import { db } from "/firebase/firebase.js";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  getDocs,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
 
 let currentFilter = 'all';
 let searchQuery = '';
@@ -43,15 +55,18 @@ function setupEventListeners() {
 }
 
 // Render staff cards
-function renderStaffCards() {
+async function renderStaffCards() {
+  const staffData = collection(db, "staffs");
+  const staffDataSnapShot = await getDocs(staffData);
+  const staffList = staffDataSnapShot.docs.map(doc => doc.data());
   const staffGrid = document.getElementById('staffGrid');
   
   // Filter staff based on search and filter criteria
-  let filteredStaff = staffData.filter(staff => {
+  let filteredStaff = staffList.filter(staff => {
     const matchesSearch = 
       staff.name.toLowerCase().includes(searchQuery) ||
-      staff.id.toLowerCase().includes(searchQuery) ||
-      staff.department.toLowerCase().includes(searchQuery);
+      staff.staffId.toLowerCase().includes(searchQuery) ||
+      staff.role.toLowerCase().includes(searchQuery);
     
     const matchesFilter = currentFilter === 'all' || staff.status === currentFilter;
     
@@ -89,7 +104,7 @@ function renderStaffCards() {
           <div class="staff-avatar">${initials}</div>
           <div class="staff-info">
             <span class="staff-name">${staff.name}</span>
-            <span class="staff-id">${staff.id}</span>
+            <span class="staff-id">${staff.staffId}</span>
           </div>
           <div class="staff-status ${staff.status}">
             ${staff.status === 'active' ? '✓' : '✕'}
@@ -98,9 +113,9 @@ function renderStaffCards() {
         <div class="staff-details">
           <div class="detail-row">
             <span class="detail-label">Department</span>
-            <span class="detail-value">${staff.department}</span>
+            <span class="detail-value">${staff.role}</span>
           </div>
-          <div class="department-tag">${staff.department}</div>
+          <div class="department-tag">${staff.role}</div>
           <div class="employment-date">
             Joined ${formattedDate}
           </div>
