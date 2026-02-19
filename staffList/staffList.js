@@ -117,7 +117,7 @@ async function renderStaffCards() {
           </div>
           <div class="department-tag">${staff.role}</div>
           <div class="employment-date">
-            Joined ${formattedDate}
+            Joined ${staff.dateJoined}
           </div>
         </div>
       </div>
